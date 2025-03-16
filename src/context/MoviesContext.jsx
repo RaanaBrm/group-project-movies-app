@@ -9,10 +9,10 @@ export const MoviesProvider = ({ children }) => {
 
 	useEffect(() => {
 		axios
-			.get("https://aryafuture.ir/movies")
+			.get("http://localhost:6603/movies")
 			.then((result) => {
-				console.log(result.data);
-				setMovies(result.data);
+				console.log(result.data.data.movies);
+				setMovies(result.data.data.movies);
 				setLoading(false);
 			})
 			.catch((error) => {
@@ -22,20 +22,42 @@ export const MoviesProvider = ({ children }) => {
 	}, []);
 
 	const handleEdit = (updatedMovie) => {
-		const updatedMovies = movies.map((movie) =>
-			movie.id === updatedMovie.id ? updatedMovie : movie
-		);
-		setMovies(updatedMovies);
+		axios
+			.put(`http://localhost:6603/movies/${updatedMovie.id}`, updatedMovie)
+			.then((result) => {
+				const updatedMovies = movies.map((movie) =>
+					movie.id === updatedMovie.id ? result.data.data.movie : movie
+				);
+				setMovies(updatedMovies);
+			})
+			.catch((error) => {
+				console.error("Error updating movie:", error);
+			});
 	};
 
 	const handleDelete = (id) => {
-		const updatedMovies = movies.filter((movie) => movie.id !== id);
-		setMovies(updatedMovies);
+		axios
+			.delete(`http://localhost:6603/movies/${id}`)
+			.then(() => {
+				const updatedMovies = movies.filter((movie) => movie._id !== id);
+				console.log(updatedMovies);
+				setMovies(updatedMovies);
+			})
+			.catch((error) => {
+				console.error("Error deleting movie:", error);
+			});
 	};
 
 	const handleAdd = (newMovie) => {
-		setMovies((movies) => [...movies, newMovie]);
-		console.log("movie added");
+		axios
+			.post("http://localhost:6603/movies", newMovie)
+			.then((result) => {
+				setMovies((movies) => [...movies, result.data.data.movie]);
+				console.log("movie added");
+			})
+			.catch((error) => {
+				console.error("Error adding movie:", error);
+			});
 	};
 
 	return (
