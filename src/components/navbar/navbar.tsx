@@ -1,26 +1,9 @@
 
-// import style from "./navbar.module.css"
-// import { Link } from 'react-router-dom'
-
 import React, { useState } from "react";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "../ui/navbar-menu";
+import { ModeToggle } from "../theme/mode-toggle";
 import { cn } from "@/lib/utils";
 
-// function Navbar() {
-//     return (
-//         <div className={style.navbar}>
-//             <p>Film Vault</p>
-//             <ul className={style.link}>
-//                 <li><Link to="/" tabIndex="0" aria-label="Home Page"> Home </Link></li>
-//                 <li><Link to="/movies" tabIndex="0" aria-label="All Movies">All Movies</Link> </li>
-//                 <li><Link to="/add" tabIndex="0" aria-label="Add" >Add</Link></li>
-//                 <li><Link to="/aboutus" tabIndex="0" aria-label="About us">About us</Link></li>
-
-//             </ul>
-
-//         </div>
-//     )
-// }
 
 function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
@@ -73,6 +56,7 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink to="/enterprise">Enterprise</HoveredLink>
           </div>
         </MenuItem>
+        <ModeToggle />
       </Menu>
     </div>
   );

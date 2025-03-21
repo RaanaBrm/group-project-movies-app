@@ -1,6 +1,5 @@
 
 import PropTypes from 'prop-types';
-import Navbar from '../../components/navbar/navbar';
 import Wrapper from '../../components/container/container';
 import style from "./aboutus.module.css";
 import hannaImage from '../../assets/hanna.jpeg';
