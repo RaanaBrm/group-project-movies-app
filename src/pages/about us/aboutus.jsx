@@ -32,7 +32,6 @@ function Aboutus() {
     <div>
       <Wrapper>
         <div>
-          <Navbar />
           <section className={style.profileSection}>
             {profiles.map(({ name, image }) => (
               <Profile key={name} name={name} image={image} />

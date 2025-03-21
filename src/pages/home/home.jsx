@@ -10,7 +10,6 @@ function Home() {
         <div>
             <Wrapper>
                 <div>
-                    <Navbar />
                     <Link className={style.LinkButtom} to="/add" tabIndex="0">Add New Movie</Link>
                 </div>
             </Wrapper>

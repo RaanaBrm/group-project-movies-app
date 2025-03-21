@@ -1,3 +1,7 @@
+import React from "react";
+import { Boxes } from "./components/ui/background-boxes";
+import Navbar from "./components/navbar/navbar";
+
 
 import { Routes, Route } from 'react-router-dom';
 import { MoviesProvider } from './context/MoviesContext';
@@ -9,15 +13,20 @@ import Aboutus from './pages/about us/aboutus';
 
 function App() {
   return (
-    <MoviesProvider> {/* Wrap the routes with the MoviesProvider */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/add" element={<Add />} />
-        <Route path="/movie/:id" element={<Movie />} />
-        <Route path="/aboutus" element={<Aboutus />} />
-      </Routes>
-    </MoviesProvider>
+    <div className="relative w-full overflow-x-hidden bg-slate-900 flex flex-col items-center justify-center">
+      <div className="absolute inset-0 w-full bg-slate-900 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+      <Boxes />
+      <Navbar className="top-2" />
+      <MoviesProvider> {/* Wrap the routes with the MoviesProvider */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/movie/:id" element={<Movie />} />
+          <Route path="/aboutus" element={<Aboutus />} />
+        </Routes>
+      </MoviesProvider>
+    </div>
   );
 }
 

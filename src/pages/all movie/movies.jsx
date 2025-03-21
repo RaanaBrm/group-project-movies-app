@@ -12,7 +12,6 @@ function Movies() {
     return (
         <Wrapper>
             <div>
-                <Navbar />
                 <div className="px-4 py-8 m-auto max-w-screen-xl mx-auto">
                     {loading ? (
                         <div className="text-white text-center text-lg">Loading...</div>
