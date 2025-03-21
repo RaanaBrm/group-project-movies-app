@@ -1,7 +1,6 @@
 import React, { Suspense, useContext } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import Wrapper from '../../components/container/container';
-import { Link } from "react-router-dom";
 import styled from "./movies.module.css";
 const Singlemovie = React.lazy(() => import('../../components/movie/singlemovie'));
 
@@ -15,32 +14,23 @@ function Movies() {
             <Wrapper>
                 <div>
                     <Navbar />
-                    <div className={styled.container}>
-                        <div className={styled.wrapper}>
-                            <div className={styled.articles}>
-                                {loading ? <div>Loading...</div> : (
-                                    movies.map((movie) => (
-                                        <Suspense fallback={<div>Is Loading...</div>} key={movie._id}>
-                                            <div className={styled.articleItem}>
-                                                <Link to={`/movie/${movie._id}`}>
-                                                    <Singlemovie article={movie} />
-                                                </Link>
-                                                <button
-                                                    onClick={() => handleDelete(movie._id)}
-                                                    className={styled.deleteButton}
-                                                >
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </Suspense>
-                                    ))
-                                )}
+                    <div className="px-4 py-8 max-w-screen-xl mx-auto">
+                        {loading ? (
+                            <div className="text-white text-center text-lg">Loading...</div>
+                        ) : (
+                            <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] place-items-center gap-6 px-4 max-w-screen-xl mx-auto p-5">
+                                {movies.map((movie) => (
+                                    <Suspense fallback={<div>Loading movie...</div>} key={movie._id}>
+                                        <Singlemovie article={movie} handleDelete={handleDelete} />
+                                    </Suspense>
+                                ))}
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </Wrapper>
         </div>
+
     );
 }
 

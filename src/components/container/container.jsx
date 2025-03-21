@@ -1,10 +1,7 @@
 
-import style from "./container.module.css"
-
-// create Wrapper to put all code in side
 function Wrapper({ children }) {
     return (
-        <div className={style.container}>
+        <div className="w-screen h-screen transition-colors duration-500 bg-gradient-to-br from-purple-50 via-pink-200 to-pink-300 dark:from-purple-950 dark:via-fuchsia-700 dark:to-pink-900 text-gray-900 dark:text-white">
             {children}
         </div>
     )
