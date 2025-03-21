@@ -4,6 +4,11 @@ import { HoveredLink, Menu, MenuItem, ProductItem } from "../ui/navbar-menu";
 import { ModeToggle } from "../theme/mode-toggle";
 import { cn } from "@/lib/utils";
 
+import hannaImage from '../../assets/hanna.jpeg';
+import naghmehImage from '../../assets/naghmeh.jpeg';
+import raanaImage from '../../assets/raana.jpeg';
+import sixtenImage from '../../assets/sixten.jpeg';
+
 
 function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
@@ -12,48 +17,40 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink to="/"> Home </HoveredLink>
-            <HoveredLink to="/movies">All Movies</HoveredLink>
-            <HoveredLink to="/add">Add</HoveredLink>
-            <HoveredLink to="/aboutus">About us</HoveredLink>
-          </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="About Us">
+        <HoveredLink to="/"> Home </HoveredLink>
+        <HoveredLink to="/movies">All Movies</HoveredLink>
+        <HoveredLink to="/aboutus">About us</HoveredLink>
+        <MenuItem setActive={setActive} active={active} item="We">
           <div className="  text-sm grid grid-cols-2 gap-10 p-4">
             <ProductItem
-              title="Algochurn"
+              title="Hanna"
               href="https://algochurn.com"
-              src="https://assets.aceternity.com/demos/algochurn.webp"
+              src={hannaImage}
               description="Prepare for tech interviews like never before."
             />
             <ProductItem
-              title="Tailwind Master Kit"
+              title="Naghmeh"
               href="https://tailwindmasterkit.com"
-              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
+              src={naghmehImage}
               description="Production ready Tailwind css components for your next project"
             />
             <ProductItem
-              title="Moonbeam"
+              title="Raana"
               href="https://gomoonbeam.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
+              src={raanaImage}
               description="Never write from scratch again. Go from idea to blog in minutes."
             />
             <ProductItem
-              title="Rogue"
+              title="Sixten"
               href="https://userogue.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
+              src={sixtenImage}
               description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
             />
           </div>
         </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Pricing">
+        <MenuItem setActive={setActive} active={active} item="Operation" >
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink to="/hobby">Hobby</HoveredLink>
-            <HoveredLink to="/individual">Individual</HoveredLink>
-            <HoveredLink to="/team">Team</HoveredLink>
-            <HoveredLink to="/enterprise">Enterprise</HoveredLink>
+            <HoveredLink to="/add">Add</HoveredLink>
           </div>
         </MenuItem>
         <ModeToggle />
