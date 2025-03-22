@@ -50,7 +50,7 @@ function Navbar({ className }: { className?: string }) {
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Operation" >
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink to="/add">Add</HoveredLink>
+            <HoveredLink to="/add">Add New</HoveredLink>
           </div>
         </MenuItem>
         <ModeToggle />

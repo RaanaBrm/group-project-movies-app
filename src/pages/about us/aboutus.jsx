@@ -1,6 +1,5 @@
 
 import PropTypes from 'prop-types';
-import Wrapper from '../../components/container/container';
 import style from "./aboutus.module.css";
 import hannaImage from '../../assets/hanna.jpeg';
 import naghmehImage from '../../assets/naghmeh.jpeg';
@@ -29,19 +28,15 @@ Profile.propTypes = {
 function Aboutus() {
   return (
     <div>
-      <Wrapper>
-        <div>
-          <section className={style.profileSection}>
-            {profiles.map(({ name, image }) => (
-              <Profile key={name} name={name} image={image} />
-            ))}
-          </section>
-          <div className={style.about}>
-            <p>About Our Team : </p>
-            <p>We are a team of four passionate developers who joined forces to create a powerful CRUD application focused on movies and films. Our platform allows users to create, update, and manage their favorite movie lists seamlessly. With a dedication to innovation and user-friendly design, we aim to provide a smooth and engaging experience for all movie enthusiasts. Our mission is to make exploring and managing movie data as enjoyable as watching the films themselves. Together, we strive to bring technology and entertainment closer than ever.</p>
-          </div>
-        </div>
-      </Wrapper>
+      <section className={style.profileSection}>
+        {profiles.map(({ name, image }) => (
+          <Profile key={name} name={name} image={image} />
+        ))}
+      </section>
+      <div className={style.about}>
+        <p>About Our Team : </p>
+        <p>We are a team of four passionate developers who joined forces to create a powerful CRUD application focused on movies and films. Our platform allows users to create, update, and manage their favorite movie lists seamlessly. With a dedication to innovation and user-friendly design, we aim to provide a smooth and engaging experience for all movie enthusiasts. Our mission is to make exploring and managing movie data as enjoyable as watching the films themselves. Together, we strive to bring technology and entertainment closer than ever.</p>
+      </div>
     </div>
   );
 }

@@ -36,7 +36,7 @@ const buttonVariants = cva(
 );
 
 const Button = React.forwardRef<
-  HTMLButtonElement, // <== Use HTMLButtonElement for correct typing
+  HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
