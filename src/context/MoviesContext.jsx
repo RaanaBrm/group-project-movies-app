@@ -6,8 +6,12 @@ export const MoviesContext = createContext();
 export const MoviesProvider = ({ children }) => {
 	const [movies, setMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [token, setToken] = useState(null);
 
 	useEffect(() => {
+		let token = localStorage.getItem("token");
+		setToken(token);
+
 		axios
 			.get("http://localhost:6603/movies")
 			.then((result) => {
@@ -36,8 +40,19 @@ export const MoviesProvider = ({ children }) => {
 	};
 
 	const handleDelete = (id) => {
+		let token = localStorage.getItem("token");
+		if (!token) {
+			console.error("No token provided for adding movie.");
+			return;
+		}
+		setToken(token);
+
 		axios
-			.delete(`http://localhost:6603/movies/${id}`)
+			.delete(`http://localhost:6603/movies/${id}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				}
+			})
 			.then(() => {
 				const updatedMovies = movies.filter((movie) => movie._id !== id);
 				console.log(updatedMovies);
@@ -49,8 +64,19 @@ export const MoviesProvider = ({ children }) => {
 	};
 
 	const handleAdd = (newMovie) => {
+		let token = localStorage.getItem("token");
+		if (!token) {
+			console.error("No token provided for adding movie.");
+			return;
+		}
+		setToken(token);
+
 		axios
-			.post("http://localhost:6603/movies", newMovie)
+			.post("http://localhost:6603/movies", newMovie, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				}
+			})
 			.then((result) => {
 				setMovies((movies) => [...movies, result.data.data.movie]);
 				console.log("movie added");
@@ -60,9 +86,22 @@ export const MoviesProvider = ({ children }) => {
 			});
 	};
 
+	const handleLogin = (loginRequest) => {
+		axios
+			.post("http://localhost:6603/auth/login", loginRequest)
+			.then((result) => {
+				setToken(() => result.data.token);
+				localStorage.setItem("token", result.data.token);
+				console.log("User logged in successfully");
+			})
+			.catch((error) => {
+				console.error("Failed to loggIn :", error);
+			});
+	};
+
 	return (
 		<MoviesContext.Provider
-			value={{ movies, loading, handleDelete, handleEdit, handleAdd }}
+			value={{ movies, loading, handleDelete, handleEdit, handleAdd, handleLogin, token }}
 		>
 			{children}
 		</MoviesContext.Provider>

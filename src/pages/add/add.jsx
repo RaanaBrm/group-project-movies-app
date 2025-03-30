@@ -6,6 +6,8 @@ import styled from "./add.module.css";
 
 import { MoviesContext } from "../../context/MoviesContext";
 
+import LoginForm from "../../components/login/loginForm";
+
 function Add() {
 	const getDate = () => {
 		const date = new Date();
@@ -22,7 +24,7 @@ function Add() {
 			return today;
 		}
 	};
-	const { movies, handleAdd } = useContext(MoviesContext);
+	const { movies, handleAdd, token } = useContext(MoviesContext);
 
 	const [movieData, setMovieData] = useState({
 		original_title: "",
@@ -73,53 +75,61 @@ function Add() {
 
 	return (
 		<div className={cn("relative z-20")}>
+
 			<div className={style.add}>
 				{/* write ur code here */}
 				<div className={styled.container}>
 					<div className={styled.wrapper}>
-						<h2>Add New Movie</h2>
-						<form action="" onSubmit={() => addMovie(event, movieData)}>
-							<h3>Title :</h3>
-							<input
-								type="text"
-								name="original_title"
-								value={movieData.original_title}
-								onChange={handleChange}
-								className={style.textInput}
-							/>
+						{token
+							?
+							<>
+								<h2>Add New Movie</h2>
+								<form action="" onSubmit={() => addMovie(event, movieData)}>
+									<h3>Title :</h3>
+									<input
+										type="text"
+										name="original_title"
+										value={movieData.original_title}
+										onChange={handleChange}
+										className={style.textInput}
+									/>
 
-							<h3>Release Date:</h3>
-							<input
-								type="date"
-								name="release_date"
-								value={movieData.release_date}
-								onChange={handleChange}
-							/>
-							<h3>Rating :</h3>
-							<input
-								type="number"
-								min={1}
-								max={10}
-								name="vote_average"
-								value={movieData.vote_average}
-								onChange={handleChange}
-							/>
-							<h3>Description :</h3>
-							<textarea
+									<h3>Release Date:</h3>
+									<input
+										type="date"
+										name="release_date"
+										value={movieData.release_date}
+										onChange={handleChange}
+									/>
+									<h3>Rating :</h3>
+									<input
+										type="number"
+										min={1}
+										max={10}
+										name="vote_average"
+										value={movieData.vote_average}
+										onChange={handleChange}
+									/>
+									<h3>Description :</h3>
+									<textarea
 
-								type="text"
-								name="overview"
-								value={movieData.overview}
-								onChange={handleChange}
-								className={style.textInput}
+										type="text"
+										name="overview"
+										value={movieData.overview}
+										onChange={handleChange}
+										className={style.textInput}
 
-							/>
-							<br />
-							<div className={style.submitContainer}>
-								<button className={style.submitButton} type="submit" aria-label="Add" tabIndex={0}>
-									Submit
-								</button></div>
-						</form>
+									/>
+									<br />
+									<div className={style.submitContainer}>
+										<button className={style.submitButton} type="submit" aria-label="Add" tabIndex={0}>
+											Submit
+										</button></div>
+								</form>
+							</>
+							:
+							<LoginForm />
+						}
 					</div>
 				</div>
 			</div>
