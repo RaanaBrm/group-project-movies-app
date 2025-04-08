@@ -7,8 +7,8 @@ function Movies() {
     const { movies, loading, handleDelete } = useContext(MoviesContext);
 
     return (
-        <div>
-            <div className="px-4 py-8 m-auto max-w-screen-xl mx-auto">
+        <main>
+            <section className="px-4 py-8 m-auto max-w-screen-xl mx-auto">
                 {loading ? (
                     <div className="text-white text-center text-lg">Loading...</div>
                 ) : (
@@ -20,9 +20,8 @@ function Movies() {
                         ))}
                     </div>
                 )}
-            </div>
-        </div>
-
+            </section>
+        </main>
     );
 }
 

@@ -98,10 +98,13 @@ export const MoviesProvider = ({ children }) => {
 				console.error("Failed to loggIn :", error);
 			});
 	};
-
+	const handlLogout = () => {
+		localStorage.removeItem('token');
+		setToken('');
+	}
 	return (
 		<MoviesContext.Provider
-			value={{ movies, loading, handleDelete, handleEdit, handleAdd, handleLogin, token }}
+			value={{ movies, loading, handleDelete, handleEdit, handleAdd, handleLogin, token, handlLogout }}
 		>
 			{children}
 		</MoviesContext.Provider>

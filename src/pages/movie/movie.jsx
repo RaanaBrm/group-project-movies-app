@@ -36,7 +36,6 @@ function Movie() {
         setIsEditing(false);
     };
 
-
     const getShortDescription = (text) => {
         const sentences = text.split('.');
         return sentences.slice(0, 2).join('.') + (sentences.length > 2 ? '...' : '');
@@ -46,68 +45,76 @@ function Movie() {
         <Wrapper>
             <div>
                 <div className="container">
-                    <div className={style.article}>
+                    <article className={style.article}>
 
                         {article ? (
-                            <div className={style.movieContainer}>
+                            <section className={style.movieContainer}>
 
                                 <div className={style.posterContainer}>
-                                    <img src={article.poster_path} alt="poster_path" />
+                                    <img 
+                                        src={article.poster_path} 
+                                        alt={`Poster of ${article.original_title}`} 
+                                        title={`Poster of ${article.original_title}`} 
+                                    />
                                 </div>
 
-
-                                <div className={style.detailsContainer}>
+                                <section className={style.detailsContainer}>
                                     {!isEditing ? (
                                         <>
                                             <div className={style.description}>
-                                                <p>{article.original_title}</p>
+                                                <h1>{article.original_title}</h1>
                                                 <p>Release Date: {article.release_date}</p>
                                                 <p>Rate: {article.vote_average}</p>
                                                 <p>Overview: {getShortDescription(article.overview)}</p>
                                                 <button onClick={() => setIsEditing(true)} className={style.button}>Edit</button>
                                             </div>
 
-
                                             {article.casts && article.casts.length > 0 ? (
-                                                <div className={style.casts}>
+                                                <section className={style.casts}>
                                                     {article.casts.slice(0, 5).map((cast) => (
                                                         <div key={cast.id} className={style.cast}>
-                                                            <img src={cast.profile_path} alt={cast.name} />
+                                                            <img 
+                                                                src={cast.profile_path} 
+                                                                alt={`Cast: ${cast.name}`} 
+                                                                title={`Cast: ${cast.name}`} 
+                                                            />
                                                         </div>
                                                     ))}
-                                                </div>
+                                                </section>
                                             ) : (
                                                 <p>There is no photo for cast</p>
                                             )}
                                         </>
                                     ) : (
                                         <div className={style.description}>
-                                            <label>Title:</label>
+                                            <label htmlFor="original_title">Title:</label>
                                             <input
                                                 type="text"
                                                 name="original_title"
                                                 value={editedArticle.original_title}
                                                 onChange={handleInputChange}
                                                 className={style.input}
+                                                id="original_title"
                                             />
-                                            <label>Description</label>
+                                            <label htmlFor="overview">Description:</label>
                                             <textarea
                                                 name="overview"
                                                 value={editedArticle.overview}
                                                 onChange={handleInputChange}
                                                 className={style.textarea}
+                                                id="overview"
                                             ></textarea>
                                             <button onClick={saveChanges} className={style.button}>Save</button>
                                             <button onClick={() => setIsEditing(false)} className={style.button}>Cancel</button>
                                         </div>
                                     )}
-                                </div>
-                            </div>
+                                </section>
+                            </section>
                         ) : (
                             <div className={style.placeholder}>Loading...</div>
                         )}
 
-                    </div>
+                    </article>
                 </div>
             </div>
         </Wrapper>
@@ -115,21 +122,3 @@ function Movie() {
 }
 
 export default Movie;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

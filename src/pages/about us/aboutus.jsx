@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import style from "./aboutus.module.css";
 import hannaImage from '../../assets/hanna.jpeg';
@@ -15,7 +14,7 @@ const profiles = [
 
 const Profile = ({ name, image }) => (
   <div className={style.profile}>
-    <img src={image} alt={`${name}'s profile`} />
+    <img src={image} alt={`Photo of ${name}, team member`} loading="lazy" />
     <p>{name}</p>
   </div>
 );
